@@ -1,0 +1,39 @@
+ // Route-3:Get Logged in user Details :POST "api/auth/getuser".  Login required
+
+    router.post(
+      "/getuser",
+      [
+        body("email", "Enter Valid Email Address").isEmail(),
+        body("password", "Password Can not be Blank").exists(),
+      ],
+
+      async (req, res) => {
+        // Finds the validation errors in this request and wraps them in an object with handy functions
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+          return res.status(400).json({ errors: errors.array() });
+        }
+        try {
+          let user = await User.findOne({ email: req.body.email });
+          if (!user) {
+            return res
+              .status(400)
+              .json({ error: "Please Enter Correct Creditals" });
+          }
+          const passwordCompare = await bcrypt.compare(password, user.password);
+          if (!passwordCompare) {
+            return res
+              .status(400)
+              .json({
+                error:
+                  "Password is Incorrect.Please try again With Correct Creditials.",
+              });
+          }
+          res.json(user.name);
+        } catch (error) {
+          console.log("hello");
+        }
+      }
+    );
+  }
+);
