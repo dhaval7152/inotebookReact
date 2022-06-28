@@ -1,12 +1,10 @@
 import React, { useContext } from "react";
-import noteContext from "../context/notes/noteContext";
+import Notes from "./Notes";
 
 export const Home=()=>{
-    const context=useContext(noteContext);
-    // eslint-disable-next-line
-    const{notes,setNotes}=context;
+     
     return(
-        <div>
+        <div > 
             <div className="container my-3">
             <h1>Add Note</h1>
            <form className="my-3 ">
@@ -26,14 +24,9 @@ export const Home=()=>{
                 <button type="submit" className="btn btn-dark">Submit</button>
             </form>
             <h2>Your Notes</h2>
-            {notes.map((note)=>{
-                return (
-                    
-                    <div>{note.title }</div>
-                )
-                 
-            })}
+ 
             </div>
+            <Notes />
         </div>
     );
 }
