@@ -5,10 +5,20 @@ const AddNote = () => {
     const context = useContext(noteContext);
     const {addNote } = context;
 
+    const clearFields=()=>{
+      const titleValue = document.getElementById('title');
+      const descriptionValue = document.getElementById('description');
+      const tagValue = document.getElementById('tag');
+      titleValue.value = '';
+      descriptionValue.value = '';
+      tagValue.value = '';
+    }
     const [note,setNote]=useState({title:"",description:"",tag:"default"})
     const handleClick=(e)=>{
         e.preventDefault();
         addNote(note.title,note.description,note.tag)
+        clearFields();
+
     }
     const onChange=(e)=>{   
         setNote({...note,[e.target.name]:e.target.value})

@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React from "react";
 
 
 const UpdateNote = (props) => {
-  const {click,onChange,handleClick,note} = props;
+  const {click,closeRef,onChange,handleClick,note} = props;
 
 
   return (
@@ -86,6 +86,7 @@ const UpdateNote = (props) => {
                 type="button"
                 className="btn btn-secondary"
                 data-bs-dismiss="modal"
+                ref={closeRef}
               >
                 Close
               </button>
