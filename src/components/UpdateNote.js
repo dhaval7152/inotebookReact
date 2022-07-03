@@ -90,7 +90,7 @@ const UpdateNote = (props) => {
               >
                 Close
               </button>
-              <button type="button" className="btn btn-success" onClick={handleClick}>
+              <button disabled={note.etitle.length<=5 || note.edescription.length<=5} type="button" className="btn btn-success" onClick={handleClick}>
                 Update Note
               </button>
             </div>

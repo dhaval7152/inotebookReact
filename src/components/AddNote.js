@@ -41,6 +41,7 @@ const AddNote = () => {
               onChange={onChange}
               aria-describedby="title"
             />
+            <sub>Title Must be More than 5 characters</sub>
             
           </div>
           <div className="mb-3">
@@ -55,6 +56,8 @@ const AddNote = () => {
               onChange={onChange}
 
             />
+            <sub>description Must be More than 5 characters</sub>
+
           </div>
           <div className="mb-3">
             <label htmlFor="tag" className="form-label">
@@ -71,7 +74,7 @@ const AddNote = () => {
           </div>
           
           
-          <button type="submit" onClick={handleClick} className="btn btn-dark">
+          <button   disabled={note.title.length<=5 || note.description.length<=5} type="submit" onClick={handleClick} className="btn btn-dark">
             Add Note
           </button>
         </form>

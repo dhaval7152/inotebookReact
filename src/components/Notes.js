@@ -23,7 +23,6 @@ const Notes = () => {
   };
 
   const handleClick = (e) => {
-    console.log(note)
     editNote(note.id,note.etitle,note.edescription,note.etag);
     closeRef.current.click();
   };
@@ -37,8 +36,11 @@ const Notes = () => {
       <AddNote />
       <UpdateNote updateNote={updateNote} click={ref} closeRef={closeRef}  onChange={onChange} handleClick={handleClick} note={note} />
       
-      <div className="row my-3">
-        {notes.map((note) => {
+      <div className="row my-2">
+        <div className="container mx-3">
+          {notes.length===0 && 'No Notes Found'}
+        </div>
+          {notes.map((note) => {
           // <div key={Math.random()}>{note.title }</div>
           return (
             <NoteItem key={note._id} updateNote={updateNote} note={note} />

@@ -22,10 +22,9 @@ try {
     });
     
     const json = await response.json();
-    console.log(json);
     setNotes(json);
   } catch (error) {
-    console.log("No Notes Available")
+    console.error("While fetching Notes Something went wrong")
   }
   };
   
@@ -60,8 +59,7 @@ try {
       },
     });
     const json = response.json();
-    console.log(json);
-
+  // eslint-disable-next-line 
     const newNotes = notes.filter((note) => {
       return note._id !== id;
     });
@@ -82,7 +80,6 @@ try {
       body: JSON.stringify({ title, description, tag }),
     });
     const json = await response.json();
-    console.log(json)
 
     let newNotes=JSON.parse(JSON.stringify(notes))
     //LOGIC TO EDIT IN CLIENT
@@ -95,7 +92,6 @@ try {
         break;
       }
     }
-    // console.log(notes)
     setNotes(newNotes);
   };
 
