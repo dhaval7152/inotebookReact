@@ -1,8 +1,8 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 const Login = () => {
-  const [credentials, setCredentials] = useState({email:"",password:""});
-  let navigate=useNavigate();
+  const [credentials, setCredentials] = useState({ email: "", password: "" });
+  let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -11,20 +11,21 @@ const Login = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email:credentials.email,password:credentials.password }),
+      body: JSON.stringify({
+        email: credentials.email,
+        password: credentials.password,
+      }),
     });
     const json = await response.json();
     console.log(json);
 
-    if(json.success){
-      //Save the AuthTOken and redirect 
-      localStorage.setItem('token',json.authtoken);
-      navigate("/")
-    }
-    else{
+    if (json.success) {
+      //Save the AuthTOken and redirect
+      localStorage.setItem("token", json.authtoken);
+      navigate("/");
+    } else {
       alert("Invalid Credentials");
     }
-
   };
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -41,7 +42,6 @@ const Login = () => {
             className="form-control"
             id="email"
             onChange={onChange}
-
             value={credentials.email}
             name="email"
             aria-describedby="emailHelp"

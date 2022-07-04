@@ -19,12 +19,13 @@ router.post(
     body("password", "Password Should me >6").isLength({ min: 6 }),
   ],
   async (req, res) => {
+    let success=false;
     // Finds the validation errors in this request and wraps them in an object with handy functions
 
     // If there are erros,return Bad Request and the errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({ success,errors: errors.array() });
     }
     // Check whether the user with this Email exists aleready
     try {
@@ -32,7 +33,7 @@ router.post(
       if (user) {
         return res
           .status(400)
-          .json({ error: "Sorry the Email is Aleready Registered." });
+          .json({success, error: "Sorry the Email is Aleready Registered." });
       }
       // Password Hashing
       const salt = await bcrypt.genSalt(10);
@@ -52,10 +53,12 @@ router.post(
       };
       // Signing the authToken with Id Of User and Secret Token
       const authToken = jwt.sign(data, JWT_SECRET);
-      console.log(authToken);
+      success=true;
+
+      console.log(success,authToken);
 
       // sending token to user
-      res.json({ authToken });
+      res.json({ success,authToken });
 
       // Catch Function if some server error occurs
     } catch (error) {
