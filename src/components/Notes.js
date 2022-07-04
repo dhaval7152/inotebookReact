@@ -20,12 +20,15 @@ const Notes = (props) => {
   const updateNote = (currentNote) => {
     ref.current.click();
     setNote({id:currentNote._id, etitle:currentNote.title,edescription:currentNote.description,etag:currentNote.tag});
+   
 
   };
 
   const handleClick = (e) => {
     editNote(note.id,note.etitle,note.edescription,note.etag);
     closeRef.current.click();
+    showAlert("Updated Notes!","success")
+
   };
   const onChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
@@ -44,7 +47,7 @@ const Notes = (props) => {
           {notes.map((note) => {
           // <div key={Math.random()}>{note.title }</div>
           return (
-            <NoteItem key={note._id} updateNote={updateNote} note={note} />
+            <NoteItem showAlert={showAlert} key={note._id} updateNote={updateNote} note={note} />
           );
         })}
       </div>

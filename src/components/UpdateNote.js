@@ -1,13 +1,11 @@
 import React from "react";
 
-
 const UpdateNote = (props) => {
-  const {click,closeRef,onChange,handleClick,note,showAlert} = props;
-
+  const { click, closeRef, onChange, handleClick, note, showAlert } = props;
 
   return (
     <div>
-        <button
+      <button
         type="button"
         className="btn btn-primary d-none  "
         data-bs-toggle="modal"
@@ -90,17 +88,23 @@ const UpdateNote = (props) => {
               >
                 Close
               </button>
-              <button disabled={note.etitle.length<=5 || note.edescription.length<=5} type="button" className="btn btn-success" onClick={handleClick}>
+
+              <button
+                disabled={
+                  note.etitle.length <= 5 || note.edescription.length <= 5
+                }
+                type="button"
+                className="btn btn-success"
+                onClick={handleClick}
+              >
                 Update Note
               </button>
             </div>
           </div>
         </div>
       </div>
-
-
     </div>
-  )
-}
+  );
+};
 
-export default UpdateNote
+export default UpdateNote;

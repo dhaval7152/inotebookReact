@@ -15,7 +15,7 @@ const AddNote = (props) => {
     e.preventDefault();
     addNote(note.title, note.description, note.tag);
     setNote({ title: "", description: "", tag: "" });
-    showAlert("Note Has been Added Succefully", "success");
+    showAlert("Added Note Succefully", "success");
   };
   const onChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
@@ -23,7 +23,7 @@ const AddNote = (props) => {
 
   return (
     <div>
-      <div className="container my-3">
+      <div className="container my-2">
         <h1>Add Note</h1>
         <form className="my-3 " >
           <div className="mb-3">
