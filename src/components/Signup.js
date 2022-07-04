@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-const SignUp = () => {
+const SignUp = (props) => {
+  const {showAlert}=props;
   const [credentials, setCredentials] = useState({
     name: "",
     email: "",
@@ -23,10 +24,15 @@ const SignUp = () => {
       }),
     });
     const json = await response.json();
-    if (json) {
+    if (json.success) {
       console.log(json);
       console.log("SUCCESS FULLY singup ");
+      showAlert("Account has been Created Succefully","success");
       navigate("/");
+    }
+    else{
+      showAlert("Please Try again with Correct Creadentials","danger");
+
     }
   };
 
@@ -38,7 +44,7 @@ const SignUp = () => {
     <div className="container">
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label htmlFor="name" className="form-label">
+          <label htmlFor="name" className="form-label mt-2">
             Name
           </label>
           <input

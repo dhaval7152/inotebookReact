@@ -1,48 +1,47 @@
-import React, { useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 import noteContext from "../context/notes/noteContext";
 
-const AddNote = () => {
-    const context = useContext(noteContext);
-    const {addNote } = context;
+const AddNote = (props) => {
+  const context = useContext(noteContext);
+  const { addNote } = context;
+  const { showAlert } = props;
 
-    const clearFields=()=>{
-      const titleValue = document.getElementById('title');
-      const descriptionValue = document.getElementById('description');
-      const tagValue = document.getElementById('tag');
-      titleValue.value = '';
-      descriptionValue.value = '';
-      tagValue.value = '';
-    }
-    const [note,setNote]=useState({title:"",description:"",tag:"default"})
-    const handleClick=(e)=>{
-        e.preventDefault();
-        addNote(note.title,note.description,note.tag)
-        clearFields();
+  const [note, setNote] = useState({
+    title: "",
+    description: "",
+    tag: "",
+  });
+  const handleClick = (e) => {
+    e.preventDefault();
+    addNote(note.title, note.description, note.tag);
+    setNote({ title: "", description: "", tag: "" });
+    showAlert("Note Has been Added Succefully", "success");
+  };
+  const onChange = (e) => {
+    setNote({ ...note, [e.target.name]: e.target.value });
+  };
 
-    }
-    const onChange=(e)=>{   
-        setNote({...note,[e.target.name]:e.target.value})
-    }
-
-     return (
+  return (
     <div>
       <div className="container my-3">
         <h1>Add Note</h1>
-        <form className="my-3 ">
+        <form className="my-3 " >
           <div className="mb-3">
             <label htmlFor="title" className="form-label">
-             Title
+              Title
             </label>
             <input
               type="text"
               className="form-control"
               id="title"
+              value={note.title}
               name="title"
               onChange={onChange}
               aria-describedby="title"
+              minLength={5}
+              required
             />
             <sub>Title Must be More than 5 characters</sub>
-            
           </div>
           <div className="mb-3">
             <label htmlFor="description" className="form-label">
@@ -53,28 +52,32 @@ const AddNote = () => {
               className="form-control"
               id="description"
               name="description"
+              value={note.description}
               onChange={onChange}
-
+              minLength={5}
+              required
             />
             <sub>description Must be More than 5 characters</sub>
-
           </div>
           <div className="mb-3">
             <label htmlFor="tag" className="form-label">
-            Tag
+              Tag
             </label>
             <input
               type="text"
               className="form-control"
               id="tag"
+              value={note.tag}
               name="tag"
               onChange={onChange}
-
             />
           </div>
-          
-          
-          <button   disabled={note.title.length<=5 || note.description.length<=5} type="submit" onClick={handleClick} className="btn btn-dark">
+
+          <button
+            disabled={note.title.length <= 5 || note.description.length <= 5}
+            type="submit"
+            className="btn btn-dark" onClick={handleClick}
+          >
             Add Note
           </button>
         </form>

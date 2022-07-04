@@ -3,7 +3,8 @@ import noteContext from "../context/notes/noteContext";
 import NoteItem from "./NoteItem";
 import AddNote from "./AddNote";
 import UpdateNote from "./UpdateNote";
-const Notes = () => {
+const Notes = (props) => {
+  const {showAlert}=props;
   const context = useContext(noteContext);
   const { notes, getNotes,editNote } = context;
   useEffect(() => {
@@ -33,8 +34,8 @@ const Notes = () => {
 
   return (
     <>
-      <AddNote />
-      <UpdateNote updateNote={updateNote} click={ref} closeRef={closeRef}  onChange={onChange} handleClick={handleClick} note={note} />
+      <AddNote showAlert={showAlert}/>
+      <UpdateNote updateNote={updateNote} click={ref} closeRef={closeRef}  onChange={onChange} handleClick={handleClick} note={note} showAlert={showAlert} />
       
       <div className="row my-2">
         <div className="container mx-3">
