@@ -1,7 +1,7 @@
 import React from "react";
 
 const UpdateNote = (props) => {
-  const { click, closeRef, onChange, handleClick, note, showAlert } = props;
+  const { click, closeRef, onChange, handleClick, note } = props;
 
   return (
     <div>

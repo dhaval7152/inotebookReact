@@ -9,7 +9,7 @@ const NoteItem = (props) => {
     // <div>{note.title}</div>
     <div className="col-md-3 my-2">
       <div className="card ">
-        <div key={Math.random()} className="card-body  ">
+        <div key={note._id} className="card-body  ">
           <h5 className="card-title mx-2">
             {note.title}
             <i

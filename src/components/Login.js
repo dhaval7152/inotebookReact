@@ -22,7 +22,7 @@ const Login = (props) => {
 
     if (json.success) {
       //Save the AuthTOken and redirect
-      localStorage.setItem("token", json.authtoken);
+      localStorage.setItem("tokenAuth", json.authToken);
       navigate("/");
       showAlert("Login Succefully","success")
     } else {
@@ -33,7 +33,8 @@ const Login = (props) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
   return (
-    <div className="container">
+    <div className="container mt-3">
+      <h1>Login to Continue INoteBook</h1>
       <form>
         <div className="form-group mb-3">
           <label className="mt-3" htmlFor="email">

@@ -7,6 +7,7 @@ export const NoteState = (props) => {
   const [notes, setNotes] = useState(notesIntial);
 
   //  GetAll Notes
+  // error finding notes ma j che tos odho
 
   const getNotes = async () => {
     // TODO:API CALL
@@ -17,10 +18,10 @@ try {
     headers: {
         "Content-Type": "application/json",
         "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjJiMjkwMmZmODI2MTczMjA3NzUxNDAxIn0sImlhdCI6MTY1NTkxMzg3NX0.lZolCKFzRWM_Pi9vWkCAOtlBCdFocU0vboJWlOTee5o",
+          localStorage.getItem("tokenAuth"),
       },
     });
-    
+    /* eslint-disable */
     const json = await response.json();
     setNotes(json);
   } catch (error) {
@@ -37,7 +38,7 @@ try {
       headers: {
         "Content-Type": "application/json",
         "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjJiMjkwMmZmODI2MTczMjA3NzUxNDAxIn0sImlhdCI6MTY1NTkxMzg3NX0.lZolCKFzRWM_Pi9vWkCAOtlBCdFocU0vboJWlOTee5o",
+        localStorage.getItem("tokenAuth"),
       },
 
       body: JSON.stringify({ title, description, tag }),
@@ -55,7 +56,7 @@ try {
       headers: {
         "Content-Type": "application/json",
         "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjJiMjkwMmZmODI2MTczMjA3NzUxNDAxIn0sImlhdCI6MTY1NTkxMzg3NX0.lZolCKFzRWM_Pi9vWkCAOtlBCdFocU0vboJWlOTee5o",
+        localStorage.getItem("tokenAuth"),
       },
     });
     const json = response.json();
@@ -74,7 +75,7 @@ try {
       headers: {
         "Content-Type": "application/json",
         "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjJiMjkwMmZmODI2MTczMjA3NzUxNDAxIn0sImlhdCI6MTY1NTkxMzg3NX0.lZolCKFzRWM_Pi9vWkCAOtlBCdFocU0vboJWlOTee5o",
+        localStorage.getItem("tokenAuth"),
       },
 
       body: JSON.stringify({ title, description, tag }),

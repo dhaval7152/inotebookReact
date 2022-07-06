@@ -3,12 +3,24 @@ import noteContext from "../context/notes/noteContext";
 import NoteItem from "./NoteItem";
 import AddNote from "./AddNote";
 import UpdateNote from "./UpdateNote";
-const Notes = (props) => {
+import { useNavigate } from "react-router-dom";
+/* eslint-disable */
+let consoleSuccess=require('console-success');
+
+const Notes =  (props) => {
   const {showAlert}=props;
   const context = useContext(noteContext);
+  let navigate = useNavigate();
   const { notes, getNotes,editNote } = context;
+
   useEffect(() => {
-    getNotes();
+    if(localStorage.getItem('tokenAuth')){
+      getNotes();
+      console.success("Fetching Users notes");
+    }
+    else{
+      navigate("/login");
+    }
     // eslint-disable-next-line
   }, []);
 
@@ -27,7 +39,7 @@ const Notes = (props) => {
   const handleClick = (e) => {
     editNote(note.id,note.etitle,note.edescription,note.etag);
     closeRef.current.click();
-    showAlert("Updated Notes!","success")
+                showAlert("Updated Notes!","success")
 
   };
   const onChange = (e) => {
@@ -47,7 +59,7 @@ const Notes = (props) => {
           {notes.map((note) => {
           // <div key={Math.random()}>{note.title }</div>
           return (
-            <NoteItem showAlert={showAlert} key={note._id} updateNote={updateNote} note={note} />
+            < NoteItem showAlert={showAlert} key={note._id} updateNote={updateNote} note={note} />
           );
         })}
       </div>
